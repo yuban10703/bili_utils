@@ -6,7 +6,8 @@ ENV LIBRARY_PATH=/lib:/usr/lib
 
 WORKDIR /app
 
-RUN apk add --no-cache --virtual bili git gcc build-base libffi-dev && \
+RUN apk add --no-cache --virtual bili git gcc build-base libffi-dev tzdata && \
+	cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 	git clone https://github.com/yjqiang/bili_utils.git /app && \
 	pip --no-cache-dir install aiohttp==3.6.2 rsa==4.0 toml==0.10.0 && \
 	rm -r /var/cache/apk && \
